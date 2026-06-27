@@ -10,6 +10,11 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: Number,
   },
+  accountType : {
+    type :  String,
+    enum  :['guest','registered'],
+    default : 'registered'
+  },
   role: {
     type: String,
     enum: ["customer", "admin"],
@@ -21,7 +26,7 @@ const userSchema = new mongoose.Schema({
   totalSpend: {
     type: Number,
   },
-  loyalityPoints:{
+  loyaltyPoints:{
     type : Number
   },
   passwordHash: {
