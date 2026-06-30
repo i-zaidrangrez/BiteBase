@@ -1,17 +1,15 @@
 import jwt from 'jsonwebtoken'
+import userModel from '../models/user.model.js'
 
 export default async function authMiddleware(req,res,next) {
     try {
         const token = req.headers.authorization.split(" ")[1]
-        // console.log(token)
         if(!token){
             return res.json({Message  : "You need to login first"})
         }
         const decoded = jwt.verify(token , process.env.JWT_ACCESS_SECRET)
-        console.log(decoded)
-        // req.token = token
-        // console.log(req.token)
-        req.user = decoded
+        const user = await userModel.findById(decoded.id).select('-passwordHash -refreshToken')
+        req.user = user
         next()
     } catch (error) {
         console.log(error)

@@ -26,7 +26,7 @@ export async function registerController(req, res) {
       passwordHash,
       phone,
     });
-    const refreshToken = generateRefreshToken({id : user._id})
+    const refreshToken = generateRefreshToken({id : user._id , name: user.name , email : user.email , role : user.role})
     user.refreshToken = refreshToken;
     user.refreshTokenExpiryTime = new Date(
       Date.now() + 7 * 24 * 60 * 60 * 1000,
@@ -72,7 +72,7 @@ export async function loginController(req, res) {
         message: "Password is Incorrect",
       });
     }
-    const refreshToken = generateRefreshToken({id : user._id,name : user.name})
+    const refreshToken = generateRefreshToken({id : user._id , name: user.name , email : user.email , role : user.role})
     user.refreshToken = refreshToken
     user.refreshTokenExpiryTime = new Date(
       Date.now() + 7 * 24 * 60 * 60 * 1000,

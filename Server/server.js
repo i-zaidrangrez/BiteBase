@@ -3,7 +3,8 @@ import express, { Router } from 'express'
 import cors from 'cors'
 import env from 'dotenv'
 import dbConnect from './src/db/db.js'
-import router from './src/routes/auth.route.js'
+import authRoutes from './src/routes/auth.route.js'
+import tableRoutes from './src/routes/table.route.js'
 import cookieParser from 'cookie-parser'
 env.config()
 
@@ -20,7 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 dbConnect()
 
 // Routes 
-app.use('/auth/v1',router)
+app.use('/auth/v1',authRoutes)
+app.use('/table/v1',tableRoutes)
 app.get('/',(req,res)=>{
     res.send('HomePage is Here')
 })

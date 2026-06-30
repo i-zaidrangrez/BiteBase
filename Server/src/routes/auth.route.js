@@ -9,6 +9,6 @@ const router = express.Router()
 
 router.post('/register',validateRegistration ,handleValidation, registerController)
 router.post('/login',loginController)
-router.get('/menu',authMiddleware,checkRole,(req,res)=>{res.send(req.user)})
+router.get('/menu',authMiddleware,checkRole(['customer','admin']),(req,res)=>{res.send(req.user)})
 
 export default router
