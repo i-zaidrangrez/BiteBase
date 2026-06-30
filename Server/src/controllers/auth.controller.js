@@ -32,7 +32,7 @@ export async function registerController(req, res) {
       Date.now() + 7 * 24 * 60 * 60 * 1000,
     );
     await user.save();
-    const accessToken = generateAccessToken({id: user._id})
+    const accessToken = generateAccessToken({id : user._id , name: user.name , email : user.email , role : user.role})
     res.cookie("accessToken", accessToken);
 
     return res.status(201).json({
@@ -79,7 +79,7 @@ export async function loginController(req, res) {
     );
     user.lastLogin = new Date(Date.now())
     await user.save()
-    const accessToken = generateAccessToken({id : user._id , name: user.name})
+    const accessToken = generateAccessToken({id : user._id , name: user.name , email : user.email , role : user.role})
     res.cookie("accessToken", accessToken);
     return res.status(200).json({
       message: "Login SuccessFully",
