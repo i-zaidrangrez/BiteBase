@@ -29,5 +29,29 @@ export const validateRegistration = [
     .isLength({min : 10 , max :10})
     .withMessage("Phone Number should Contain 10 numbers"),
 ];
+export const validateUpdate = [
+  body("name")
+  .optional()
+    .matches(/^[a-zA-Z0-9\s]+$/).withMessage("Name should only contain letters")
+    .trim()
+    .isLength({ min: 2, max: 50 })
+    .withMessage("Name must be between 2 and 50 characters"),
+  body("email")
+  .optional()
+    .toLowerCase()
+    .isEmail()
+    .withMessage("email is invalid")
+    .normalizeEmail(),
+  body("password")
+  .optional()
+    .isLength({ min: 6 , max: 12 })
+    .withMessage("password length must be 6 to 12"),
+  body("phone")
+  .optional()
+    .isNumeric()
+    .withMessage("Phone no. should contain only numeric values")
+    .isLength({min : 10 , max :10})
+    .withMessage("Phone Number should Contain 10 numbers"),
+];
 
 

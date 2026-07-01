@@ -3,6 +3,7 @@ import userModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { generateAccessToken, generateRefreshToken } from "../utils/tokens.js";
+import { matchedData } from "express-validator";
 
 export async function registerController(req, res) {
   try {
@@ -61,6 +62,7 @@ export async function loginController(req, res) {
       });
     }
     const user = await userModel.findOne({ email });
+    console.log(user)
     if (!user) {
       return res.status(400).json({
         message: `user doesn't exist with this email Please Register`,
@@ -97,3 +99,58 @@ export async function loginController(req, res) {
   }
 }
 
+export async function updateUser(req,res) {
+  try {
+    const data = matchedData(req, { includeOptionals: true });
+    const user = req.user
+    if(!user){
+      return res.status(200).json({
+        message : "Please Login first"
+      })
+    }
+    const newUser = await userModel.findByIdAndUpdate( user._id,data,{new : true})
+    return res.status(200).json({
+      message : "User Update success"
+    })    
+  } catch (error) {
+    return res.status(500).json({
+      message : error
+    })
+  }
+  
+}
+
+export async function deActivateUser(req,res) {
+  try {
+    const user = req.user;
+    user.isActive = false
+    await user.save()
+    return res.status(200).json({
+      message : "User Deactivated"
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message : error
+    })
+  }
+}
+
+export async function deleteUser(req,res) {
+  try {
+    const user = req.user;
+  
+    if(!user){
+      return res.status(401).json({
+        message : "Please Login First"
+      })
+    }
+    await userModel.findOneAndDelete(user._id)
+    return res.status(200).json({
+      message : "User Deleted"
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message : error
+    })
+  }
+}

@@ -5,6 +5,7 @@ import env from 'dotenv'
 import dbConnect from './src/db/db.js'
 import authRoutes from './src/routes/auth.route.js'
 import tableRoutes from './src/routes/table.route.js'
+import sessionRoutes from './src/routes/session.route.js'
 import cookieParser from 'cookie-parser'
 env.config()
 
@@ -23,6 +24,7 @@ dbConnect()
 // Routes 
 app.use('/auth/v1',authRoutes)
 app.use('/table/v1',tableRoutes)
+app.use('/session/v1',sessionRoutes)
 app.get('/',(req,res)=>{
     res.send('HomePage is Here')
 })

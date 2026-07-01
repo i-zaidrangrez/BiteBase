@@ -68,12 +68,12 @@ export async function getTable(req,res) {
     }
     const table = await tableModel.findOne({qrSlug , isActive : true})
     if(!table){
-      res.status(400).json({
+      return res.status(400).json({
         message : "Invalid Table"
       })
     }
   
-    res.status(200).json({
+    return res.status(200).json({
       message : "Table Fetched",
       table,
     })
@@ -96,6 +96,45 @@ export async function getAllTable(req,res) {
     return res.status(200).json({
       message : "Tables Fetched",
       tables
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message : error
+    })
+  }
+}
+
+export async function updateTable(req,res) {
+  try {
+    const data = req.body
+    const qrSlug = await req.query.qr
+      if(!qrSlug){
+        return res.status.json({
+          message  : "Invalid url"
+        })
+      }
+      const table = await tableModel.findOne({qrSlug})
+    const newTable = await tableModel.findByIdAndUpdate( table._id,data,{new : true})
+    return res.status(200).json({
+      message : "Table Update success",
+      newTable,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message : error
+    })
+  }
+  
+}
+
+export async function deleteTable(req,res) {
+  try {
+    const qrSlug = req.query.qr
+    const table = await tableModel.findOne({qrSlug})
+    await tableModel.findOneAndDelete(table._id)
+  
+    return res.status(200).json({
+      message : `Table ${table.tableNumber} Deleted Success`
     })
   } catch (error) {
     return res.status(500).json({
