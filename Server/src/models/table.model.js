@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { type } from 'os'
 
 const tableSchema = mongoose.Schema({
     tableNumber : {
@@ -17,6 +18,10 @@ const tableSchema = mongoose.Schema({
     qrCodeURL : {
         type : String,
         required : true
+    },
+    isActive : {
+        type : Boolean,
+        default : true
     },
     qrImage : {
         type : String
