@@ -1,10 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Navbar from '../components/Home/Navbar'
 
 const Home = () => {
     const auth = useSelector((state)=>state.auth)
   return (
-    <div className='bg-red-500'>Homepage</div>
+    <div className='h-screen w-full overflow-x-hidden relative'>
+      <Navbar/>
+    </div>
   )
 }
 
