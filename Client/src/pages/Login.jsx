@@ -56,7 +56,7 @@ const Login = () => {
               handleSubmit(e);
             }}
           >
-            <h1 className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
+            <div className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
               <h1 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
                 <MdEmail />
               </h1>
@@ -69,8 +69,8 @@ const Login = () => {
                 type="email"
                 placeholder="Enter Email"
               />
-            </h1>
-            <h1 className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
+            </div>
+            <div className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
               <h1 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
                 <FaLock />
               </h1>
@@ -83,7 +83,7 @@ const Login = () => {
                 type="password"
                 placeholder="Enter Password"
               />
-            </h1>
+            </div>
             <p className="text-xs text-gray-500">
               New Customer?{" "}
               <Link

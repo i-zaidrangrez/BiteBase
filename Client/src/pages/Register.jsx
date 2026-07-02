@@ -38,9 +38,7 @@ const Register = () => {
         phone,
       }),
     ).unwrap();
-    navigate("/home");
-    console.log(email, password);
-    console.log(result);
+    navigate("/");
   };
   return (
     <div className="h-screen flex items-center justify-center w-full bg-[url(https://i.pinimg.com/1200x/e9/28/72/e92872fcfde7e1a0541f1f5835a4cb38.jpg)] object-cover">

@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom'
 const OpenRoutes = (props) => {
     const navigate = useNavigate()
     const accessToken = localStorage.getItem('AccessToken')
+    const sessionToken = localStorage.getItem('sessionToken')
     useEffect(() => {
-  if (accessToken) {
+  if (accessToken || sessionToken) {
     navigate('/');
   }
 }, [accessToken, navigate]);
