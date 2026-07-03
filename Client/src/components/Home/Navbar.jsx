@@ -6,9 +6,9 @@ import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 
 const Navbar = () => {
-    const [navPanel, setNavPanel] = useState(false)
+  const [navPanel, setNavPanel] = useState(false);
   return (
-    <div className="h-1/10 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center px-4 justify-between">
+    <div className="h-1/10 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center px-10 justify-between">
       <div className="h-2/3 sm:h-full md:h-full lg:h-full">
         <img className="h-full" src={logoWider} alt="" />
       </div>
@@ -22,7 +22,12 @@ const Navbar = () => {
           placeholder="Search Items..."
         />
       </div>
-      <div onClick={()=>{setNavPanel(true)}} className="text-4xl lg:hidden">
+      <div
+        onClick={() => {
+          setNavPanel(true);
+        }}
+        className="text-4xl lg:hidden active:rotate-90 duration-300"
+      >
         <IoIosMenu />
       </div>
 
@@ -54,8 +59,17 @@ const Navbar = () => {
           <FaRegUser />
         </div>
       </div>
-      <div className={ `${navPanel? "translate-x-none" : "translate-x-200"} absolute top-0 h-full right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-black duration-700`}>
-        <div onClick={()=>{setNavPanel(false)}} className="h-10 w-10 bg-red-400 absolute top-5 right-5 flex items-center justify-center rounded-full"><RxCross2 /></div>
+      <div
+        className={`${navPanel ? "translate-x-none" : "translate-x-200"} absolute top-0 h-full right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-black duration-300`}
+      >
+        <div
+          onClick={() => {
+            setNavPanel(false);
+          }}
+          className="h-10 w-10 bg-red-400 absolute top-5 right-5 flex items-center justify-center rounded-full"
+        >
+          <RxCross2 />
+        </div>
         <Link className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]">
           Home
         </Link>
@@ -72,15 +86,15 @@ const Navbar = () => {
           Help
         </Link>
         <div className="text-3xl gap-10 items-center py-5 px-5 place-content-between absolute bottom-0 flex w-full">
-        <div className="hover:text-[#f79b61] cursor-pointer relative p-2">
+          <div className="hover:text-[#f79b61] cursor-pointer relative p-2">
             <div className="h-6 rounded-full w-6 bg-[#e8691a] absolute top-0 right-0 text-xs flex items-center justify-center text-white">
-            3
+              3
             </div>
-          <FaShoppingCart />
-        </div>
-        <div className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full">
-          <FaRegUser />
-        </div>
+            <FaShoppingCart />
+          </div>
+          <div className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full">
+            <FaRegUser />
+          </div>
         </div>
       </div>
     </div>
