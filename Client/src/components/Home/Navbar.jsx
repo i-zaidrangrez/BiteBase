@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`${navPanel ? "translate-x-none" : "translate-x-200"} absolute top-0 h-full right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-black duration-300`}
+        className={`${navPanel ? "translate-x-none" : "translate-x-200"} absolute top-0 h-full right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-[#e8691a] duration-300`}
       >
         <div
           onClick={() => {
@@ -87,7 +87,7 @@ const Navbar = () => {
         </Link>
         <div className="text-3xl gap-10 items-center py-5 px-5 place-content-between absolute bottom-0 flex w-full">
           <div className="hover:text-[#f79b61] cursor-pointer relative p-2">
-            <div className="h-6 rounded-full w-6 bg-[#e8691a] absolute top-0 right-0 text-xs flex items-center justify-center text-white">
+            <div className="h-6 rounded-full w-6 bg-red-500 absolute top-0 right-0 text-xs flex items-center justify-center text-white">
               3
             </div>
             <FaShoppingCart />

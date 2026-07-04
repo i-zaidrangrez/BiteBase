@@ -6,9 +6,9 @@ const HeroSection = () => {
   return (
     <div className=' w-full h-9/10 p-2 block sm:w-full md:flex sm:p-10 flex-wrap'>
         <div className='w-full md:w-6/10 h-full p-5 flex flex-col gap-5'>
-            <div className='font-IMB flex justify-center sm:text-[2vw] md:text-[1vw] rounded-full bg-[#feefe3] text-[#e8691a] font-medium w-full sm:w-5/10'>Fast Delivery &middot; Best Quality &middot; Great Prices</div>
+            <div className='font-IMB flex justify-center sm:text-[2vw] lg:text-[1vw] rounded-full bg-[#feefe3] text-[#e8691a] font-medium w-full sm:w-5/10 md:w-full lg:w-1/2'>Fast Delivery &middot; Best Quality &middot; Great Prices</div>
             <div className='h-4/10 w-full'>
-                <h1 className='w-full text-[11vw] sm:text-[9vw] md:text-[5vw] leading-tight font-medium font-IMB'>Delicious Food, <br /> <span className='text-[#e8691a]'>Delivered</span> To You</h1>
+                <h1 className='w-full text-[11vw] sm:text-[9vw] md:text-[7vw] lg:text-[5vw] leading-tight font-medium font-IMB'>Delicious Food, <br /> <span className='text-[#e8691a]'>Delivered</span> To You</h1>
             </div>
             <div className='-mt-25 sm:mt-0 text-[4vw] sm:text-[3vw] md:text-[2vw]  w-full font-IMB'>
                 <p>Discover your favorite meal and get them <br /> Delivered hot and fresh at your doorstep</p>
@@ -41,7 +41,7 @@ const HeroSection = () => {
                 </div>
             </div>
         </div>
-        <div className='w-full h-1/2 md:w-4/10 md:h-full flex flex-wrap items-center'>
+        <div className='w-full h-[2vh] hidden md:w-4/10 md:h-[50vw] sm:hidden md:flex lg:flex lg:h-full items-center'>
             <img src={heroImg} className='h-7/10 rounded-[10vh] rounded-tl-[25vh]' alt="" />
         </div>
     </div>
