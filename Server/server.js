@@ -6,6 +6,7 @@ import dbConnect from './src/db/db.js'
 import authRoutes from './src/routes/auth.route.js'
 import tableRoutes from './src/routes/table.route.js'
 import sessionRoutes from './src/routes/session.route.js'
+import menuRoutes from './src/routes/menu.routes.js'
 import cookieParser from 'cookie-parser'
 env.config()
 
@@ -25,6 +26,7 @@ dbConnect()
 app.use('/auth/v1',authRoutes)
 app.use('/table/v1',tableRoutes)
 app.use('/session/v1',sessionRoutes)
+app.use('/menu/v1',menuRoutes)
 app.get('/',(req,res)=>{
     res.send('HomePage is Here')
 })
