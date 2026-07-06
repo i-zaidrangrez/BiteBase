@@ -4,7 +4,7 @@ const menuSchema = mongoose.Schema({
     name : {
         type : String
     },
-    Image : {
+    image : {
         type : String
     },
     description : {
@@ -17,7 +17,8 @@ const menuSchema = mongoose.Schema({
         type : String
     },
     isAvailable : {
-        type : Boolean
+        type : Boolean,
+        default : true
     }
 })
 
