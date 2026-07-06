@@ -18,7 +18,7 @@ const guestSlice = createSlice({
     initialState : {
         loading : false,
         error : null,
-        sessionToken : null
+        sessionToken : null  
     },
     extraReducers: (builder)=>{
         builder.addCase(session.pending,(state,action)=>{
