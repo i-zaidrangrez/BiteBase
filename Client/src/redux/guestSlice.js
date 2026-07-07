@@ -28,6 +28,7 @@ const guestSlice = createSlice({
             state.loading = false
         }).addCase(session.rejected,(state,action)=>{
             state.error = action.payload
+            console.log(action)
         })
     }
 })

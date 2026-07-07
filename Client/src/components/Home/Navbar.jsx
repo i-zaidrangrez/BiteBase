@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { FaRegUser, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
+import Profile from "./Profile.jsx";
 
 const Navbar = () => {
   const [navPanel, setNavPanel] = useState(false);
+  const [profilePanel, setProfilePanel] = useState(false)
   return (
     <div className="h-1/10 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center px-10 justify-between">
       <div className="h-2/3 sm:h-full md:h-full lg:h-full">
@@ -55,9 +57,11 @@ const Navbar = () => {
         <div className="hover:text-[#f79b61] cursor-pointer">
           <FaShoppingCart />
         </div>
-        <div className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full">
+        <div onClick={()=>{if(!profilePanel){setProfilePanel(true)}else{setProfilePanel(false)}}} className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full">
           <FaRegUser />
         </div>
+       {profilePanel? <Profile/> : null}
+        
       </div>
       <div
         className={`${navPanel ? "translate-x-none" : "translate-x-200"} absolute top-0 h-full right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-[#e8691a] duration-300`}

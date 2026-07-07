@@ -31,7 +31,7 @@ const Login = () => {
           password,
         }),
       ).unwrap();
-      navigate("/home");
+      navigate("/");
       console.log(email, password);
     } catch (error) {
       console.log(error);
