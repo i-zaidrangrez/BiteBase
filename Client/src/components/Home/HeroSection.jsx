@@ -17,7 +17,7 @@ const HeroSection = () => {
           <HeroImg/>
         </div>
       </div>
-      <div className='w-full md:w-2/3 px-5 mt-10 md:mt-0'>
+      <div className='w-full md:w-2/3 px-5 mt-10 md:mt-0 md:ml-15'>
         <Services/>
       </div>
     </div>

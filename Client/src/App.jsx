@@ -4,8 +4,10 @@ import Welcome from './pages/Welcome.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
+import Menu from './pages/Menu.jsx'
 import ProtectedRoutes from './components/ProtectedRoutes.jsx'
 import OpenRoutes from './components/OpenRoutes.jsx'
+import Cart from './pages/Cart.jsx'
 
 const App = () => {
   return (
@@ -18,6 +20,16 @@ const App = () => {
         <Route path='/' element={
           <ProtectedRoutes>
             <Home/>
+          </ProtectedRoutes>
+          }/>
+        <Route path='/menu' element={
+          <ProtectedRoutes>
+            <Menu/>
+          </ProtectedRoutes>
+          }/>
+        <Route path='/cart' element={
+          <ProtectedRoutes>
+            <Cart/>
           </ProtectedRoutes>
           }/>
       </Routes>

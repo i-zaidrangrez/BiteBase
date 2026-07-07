@@ -7,6 +7,7 @@ import authRoutes from './src/routes/auth.route.js'
 import tableRoutes from './src/routes/table.route.js'
 import sessionRoutes from './src/routes/session.route.js'
 import menuRoutes from './src/routes/menu.routes.js'
+import cartRoutes from './src/routes/cart.routes.js'
 import cookieParser from 'cookie-parser'
 env.config()
 
@@ -27,6 +28,7 @@ app.use('/auth/v1',authRoutes)
 app.use('/table/v1',tableRoutes)
 app.use('/session/v1',sessionRoutes)
 app.use('/menu/v1',menuRoutes)
+app.use('/cart/v1',cartRoutes)
 app.get('/',(req,res)=>{
     res.send('HomePage is Here')
 })

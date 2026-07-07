@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logoWider from "/logoWider.png";
 import { Link } from "react-router-dom";
 import { FaRegUser, FaSearch, FaShoppingCart } from "react-icons/fa";
@@ -7,9 +7,20 @@ import { RxCross2 } from "react-icons/rx";
 import Profile from "./Profile.jsx";
 
 const Navbar = () => {
-  const role = localStorage.getItem('role')
+  const role = localStorage.getItem("role");
   const [navPanel, setNavPanel] = useState(false);
-  const [profilePanel, setProfilePanel] = useState(false)
+  const [profilePanel, setProfilePanel] = useState(false);
+  useEffect(() => {
+    if (navPanel) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [navPanel]);
   return (
     <div className="h-1/10 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center px-10 justify-between">
       <div className="w-[15vmax]">
@@ -38,7 +49,10 @@ const Navbar = () => {
         <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
           Home
         </Link>
-        <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
+        <Link
+          to="/menu"
+          className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]"
+        >
           Menu
         </Link>
         <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
@@ -47,25 +61,35 @@ const Navbar = () => {
         <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
           Offers
         </Link>
-        {role === 'admin'?<Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
-          Dashboard
-        </Link>:null}
+        {role === "admin" ? (
+          <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
+            Dashboard
+          </Link>
+        ) : null}
       </div>
       <div className="text-3xl hidden gap-10 items-center py-5 px-2 sm:hidden relative md:hidden lg:flex">
         <div className="h-6 rounded-full left-1/5 w-6 bg-[#e8691a] absolute top-1/5 text-xs flex items-center justify-center text-white">
           3
         </div>
-        <div className="hover:text-[#f79b61] cursor-pointer">
+        <Link to="/cart" className="hover:text-[#f79b61] cursor-pointer">
           <FaShoppingCart />
-        </div>
-        <div onClick={()=>{if(!profilePanel){setProfilePanel(true)}else{setProfilePanel(false)}}} className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full">
+        </Link>
+        <div
+          onClick={() => {
+            if (!profilePanel) {
+              setProfilePanel(true);
+            } else {
+              setProfilePanel(false);
+            }
+          }}
+          className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full"
+        >
           <FaRegUser />
         </div>
-       {profilePanel? <Profile/> : null}
-        
+        {profilePanel ? <Profile /> : null}
       </div>
       <div
-        className={`${navPanel ? "translate-x-none" : "translate-x-200"} absolute top-0 h-full right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-[#e8691a] duration-300`}
+        className={`${navPanel ? "translate-x-none overflow-x-clip" : "translate-x-300"} absolute top-0 h-screen right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-[#e8691a] duration-300`}
       >
         <div
           onClick={() => {
@@ -78,7 +102,10 @@ const Navbar = () => {
         <Link className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]">
           Home
         </Link>
-        <Link className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]">
+        <Link
+          to="/menu"
+          className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]"
+        >
           Menu
         </Link>
         <Link className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]">
@@ -87,19 +114,33 @@ const Navbar = () => {
         <Link className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]">
           Offers
         </Link>
-        <Link className="py-2 hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-500 px-4 hover:text-[#e8691a]">
-          Help
-        </Link>
+        {role === "admin" ? (
+          <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
+            Dashboard
+          </Link>
+        ) : null}
         <div className="text-3xl gap-10 items-center py-5 px-5 place-content-between absolute bottom-0 flex w-full">
-          <div className="hover:text-[#f79b61] cursor-pointer relative p-2">
+          <Link to='/cart' className="hover:text-[#f79b61] cursor-pointer relative p-2">
             <div className="h-6 rounded-full w-6 bg-red-500 absolute top-0 right-0 text-xs flex items-center justify-center text-white">
               3
             </div>
             <FaShoppingCart />
-          </div>
-          <div className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full">
+          </Link>
+          <div
+            onClick={() => {
+              if (!profilePanel) {
+                setProfilePanel(true);
+              } else {
+                setProfilePanel(false);
+              }
+            }}
+            className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full"
+          >
             <FaRegUser />
           </div>
+          {profilePanel ? (
+            <Profile navPanel={navPanel} setNavPanel={setNavPanel} />
+          ) : null}
         </div>
       </div>
     </div>
