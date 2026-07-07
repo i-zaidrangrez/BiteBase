@@ -4,7 +4,7 @@ import { IoIosMore } from 'react-icons/io'
 const Category = () => {
   return (
     <div className=' flex items-center justify-center h-[30vh]'>
-        <div className=' w-full h-8/10 md:mx-20 rounded-4xl grid grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 px-2 shadow-2xl'>
+        <div className=' w-full h-8/10 md:mx-20 rounded-4xl grid grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 pr-5 shadow-2xl'>
             <div className=' h-35 w-35'>
                 <div className='flex flex-col h-full items-center justify-center gap-2'>
                     <img className='h-1/2 bg-orange-200  p-2 rounded-full' src="https://static.vecteezy.com/system/resources/previews/078/130/866/non_2x/plasticine-burger-toy-fast-food-model-on-transparent-background-png.png" alt="" />
@@ -17,7 +17,7 @@ const Category = () => {
                     <h1 className='font-IMB font-bold'>Pizza</h1>
                 </div>
             </div>
-            <div className=' h-35 w-35 hidden sm:block'>
+            <div className=' h-35 w-35'>
                 <div className='flex flex-col h-full items-center justify-center gap-2'>
                     <img className='h-1/2 bg-orange-200  p-2 rounded-full' src="https://static.vecteezy.com/system/resources/thumbnails/057/820/571/small_2x/realistic-toy-chicken-drumstick-on-a-plain-surface-png.png" alt="" />
                     <h1 className='font-IMB font-bold'>Chicken</h1>

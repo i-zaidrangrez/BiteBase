@@ -7,7 +7,7 @@ import Category from '../components/Home/Category'
 const Home = () => {
     const auth = useSelector((state)=>state.auth)
   return (
-    <div className='h-screen w-full overflow-x-hidden relative'>
+    <div className='h-full w-full overflow-x-hidden relative'>
       <Navbar/>
       <HeroSection/>
       <Category/>

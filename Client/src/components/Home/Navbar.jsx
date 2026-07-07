@@ -7,11 +7,12 @@ import { RxCross2 } from "react-icons/rx";
 import Profile from "./Profile.jsx";
 
 const Navbar = () => {
+  const role = localStorage.getItem('role')
   const [navPanel, setNavPanel] = useState(false);
   const [profilePanel, setProfilePanel] = useState(false)
   return (
     <div className="h-1/10 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center px-10 justify-between">
-      <div className="h-2/3 sm:h-full md:h-full lg:h-full">
+      <div className="w-[15vmax]">
         <img className="h-full" src={logoWider} alt="" />
       </div>
       <div className="h-1/3 w-5/10 p-2 flex border sm:h-1/2 md:w-5/10 lg:w-2/10 items-center rounded-2xl">
@@ -46,9 +47,9 @@ const Navbar = () => {
         <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
           Offers
         </Link>
-        <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
-          Help
-        </Link>
+        {role === 'admin'?<Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
+          Dashboard
+        </Link>:null}
       </div>
       <div className="text-3xl hidden gap-10 items-center py-5 px-2 sm:hidden relative md:hidden lg:flex">
         <div className="h-6 rounded-full left-1/5 w-6 bg-[#e8691a] absolute top-1/5 text-xs flex items-center justify-center text-white">
