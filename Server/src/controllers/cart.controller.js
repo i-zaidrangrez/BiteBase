@@ -20,7 +20,20 @@ export async function addToCart(req,res ) {
                 message : "Menu Item is not found"
             })
         }
-        
+
+        const isItemExist = cart.items.find((Item)=> Item.menuItemId.equals(menu._id))
+        if(!isItemExist){
+            cart.items.push({menuItemId : menu._id , quantity , price : menu.price})
+            await cart.save()
+        }else{
+            isItemExist.quantity += 1
+            await cart.save()
+        }
+
+        cart.totalCartPrice = cart.items.reduce((acc,item)=>{
+            return acc + (item.quantity*item.price)
+        },0)
+        await cart.save()
     } catch (error) {
         console.log(error)
     }
