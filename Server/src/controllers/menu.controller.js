@@ -134,3 +134,27 @@ export async function updateItem(req, res) {
     })
   }
 }
+
+export async function changeAvailablity(req,res) {
+   try {
+    const id = req.params.id;
+    const item = await menuModel.findById(id);
+  
+    if (item.isAvailable) {
+      item.isAvailable = false
+    }else{
+      item.isAvailable = true
+    }
+    console.log(item.isAvailable)
+    await item.save()
+    return res.status(200).json({
+      message: "availability is Changed",
+      item,
+    });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      message : error
+    })
+  }
+}

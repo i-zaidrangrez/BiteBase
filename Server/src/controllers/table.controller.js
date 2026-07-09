@@ -17,7 +17,7 @@ export async function createTable(req, res) {
          message : "Something Went Wrong! Try Again"
      })
    }
-   const qrCodeURL = `http://localhost:5173/scan-qr?qr=${qrSlug}`;
+   const qrCodeURL = `http://10.110.198.42:5173/welcome?qr=${qrSlug}`;
    if(!qrCodeURL){
      return res.status(500).json({
          message : "Something Went Wrong! Try Again"
