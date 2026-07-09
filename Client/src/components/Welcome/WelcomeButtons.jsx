@@ -15,7 +15,7 @@ const WelcomeButtons = () => {
 
   const handleSession = async()=>{
     try {
-      const res = await dispatch(session({deviceId : "6275",qrSlug})).unwrap()
+      const res = await dispatch(session({deviceId : "62878",qrSlug})).unwrap()
       console.log(res)
       if(res){
         navigate('/')

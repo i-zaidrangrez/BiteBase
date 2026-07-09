@@ -13,6 +13,7 @@ export const logout = createAsyncThunk('/auth/logout',async(_ , thunkAPI)=>{
     try {
         // const res = await axios.post('http://localhost:3000/auth/v1/logout')
         localStorage.removeItem('AccessToken')
+        localStorage.removeItem('sessionToken')
         localStorage.removeItem('name')
         localStorage.removeItem('role')
         localStorage.removeItem('email')

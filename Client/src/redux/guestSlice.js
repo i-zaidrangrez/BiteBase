@@ -6,6 +6,7 @@ export const session = createAsyncThunk('/session',async (data , thunkAPI)=>{
         const res = await axios.post('http://localhost:3000/session/v1/session',data)
         return res.data
     } catch (error) {
+        console.log(error)
          return thunkAPI.rejectWithValue(
         error.response?.data?.message || "Something went wrong"
       );
@@ -26,6 +27,9 @@ const guestSlice = createSlice({
         }).addCase(session.fulfilled,(state , action)=>{
             localStorage.setItem('sessionToken',action.payload.session.sessionToken)
             state.loading = false
+            localStorage.setItem('name',"Guest")
+            localStorage.setItem('email',"Guest")
+            localStorage.setItem('role',"Guest")
         }).addCase(session.rejected,(state,action)=>{
             state.error = action.payload
             console.log(action)

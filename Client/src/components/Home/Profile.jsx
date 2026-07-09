@@ -17,7 +17,6 @@ const Profile = (props) => {
                 logout()
               )
               navigate("/login");
-              console.log("click")
             } catch (error) {
               console.log(error);
             }

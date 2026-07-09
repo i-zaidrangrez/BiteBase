@@ -1,6 +1,7 @@
 import tableModel from "../models/table.model.js";
 import crypto from "crypto";
 import QRCode from "qrcode";
+import os from 'os'
 
 export async function createTable(req, res) {
  try {
@@ -10,6 +11,7 @@ export async function createTable(req, res) {
          message : "Please Provide Table no. and capacity"
      })
    }
+     const ip = os.networkInterfaces()['Wi-Fi 2'].find((elem)=>{if(elem.family === 'IPv4'){return elem}}).address
  
    const qrSlug = crypto.randomBytes(6).toString("hex");
    if(!qrSlug){
@@ -17,7 +19,7 @@ export async function createTable(req, res) {
          message : "Something Went Wrong! Try Again"
      })
    }
-   const qrCodeURL = `http://10.110.198.42:5173/welcome?qr=${qrSlug}`;
+   const qrCodeURL = `http://${ip}:5173/welcome?qr=${qrSlug}`;
    if(!qrCodeURL){
      return res.status(500).json({
          message : "Something Went Wrong! Try Again"
