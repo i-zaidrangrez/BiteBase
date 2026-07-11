@@ -22,18 +22,18 @@ const Navbar = () => {
     };
   }, [navPanel]);
   return (
-    <div className="h-1/10 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center px-10 justify-between">
-      <div className="w-[15vmax]">
+    <div className="shadow-sm h-20 sm:h-1/10 md:h-1/10 lg:h-1/9 lg:bg-white w-full flex items-center justify-between">
+      <div className="w-40 lg:w-52">
         <img className="h-full" src={logoWider} alt="" />
       </div>
-      <div className="h-1/3 w-5/10 p-2 flex border sm:h-1/2 md:w-5/10 lg:w-2/10 items-center rounded-2xl">
-        <div className="text-sm sm:text-md">
+      <div className="h-1/3 w-5/10 bg-[#F8F8F8] focus:bg-orange-300 p-2 flex sm:h-1/2 md:w-5/10 lg:w-2/10 items-center rounded-2xl">
+        <div className="text-sm  sm:text-md">
           <FaSearch />
         </div>
         <input
           className="h-1/2 w-full outline-0 placeholder:font-IMB p-2"
           type="text"
-          placeholder="Search Items..."
+          placeholder="Search delicious food..."
         />
       </div>
       <div
@@ -46,7 +46,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden font-IMB gap-5 text-2xl sm:hidden md:hidden lg:flex">
-        <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
+        <Link to='/' className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
           Home
         </Link>
         <Link
@@ -67,7 +67,7 @@ const Navbar = () => {
           </Link>
         ) : null}
       </div>
-      <div className="text-3xl hidden gap-10 items-center py-5 px-2 sm:hidden relative md:hidden lg:flex">
+      <div className="text-3xl hidden gap-14 items-center py-5 px-2 sm:hidden relative md:hidden lg:flex">
         <div className="h-6 rounded-full left-1/5 w-6 bg-[#e8691a] absolute top-1/5 text-xs flex items-center justify-center text-white">
           3
         </div>
@@ -82,7 +82,7 @@ const Navbar = () => {
               setProfilePanel(false);
             }
           }}
-          className="text-3xl bg-gray-300 hover:bg-gray-200 cursor-pointer p-2 rounded-full"
+          className="text-3xl border hover:scale-[1.05] hover:shadow-lg cursor-pointer p-2 rounded-full duration-300"
         >
           <FaRegUser />
         </div>
@@ -120,7 +120,10 @@ const Navbar = () => {
           </Link>
         ) : null}
         <div className="text-3xl gap-10 items-center py-5 px-5 place-content-between absolute bottom-0 flex w-full">
-          <Link to='/cart' className="hover:text-[#f79b61] cursor-pointer relative p-2">
+          <Link
+            to="/cart"
+            className="hover:text-[#f79b61] cursor-pointer relative p-2"
+          >
             <div className="h-6 rounded-full w-6 bg-red-500 absolute top-0 right-0 text-xs flex items-center justify-center text-white">
               3
             </div>
