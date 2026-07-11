@@ -23,7 +23,7 @@ const Profile = (props) => {
     }
     console.log(auth)
   return (
-    <div className={`${navPanel?'bottom-18 right-0' : 'top-18'} absolute h-30 w-70 bg-black px-2 rounded-2xl duration-500 font-IMB right-0 flex justify-between`}>
+    <div className={`${navPanel?'bottom-18 right-0' : 'top-18'} z-999 absolute h-30 w-70 bg-black px-2 rounded-2xl duration-500 font-IMB right-0 flex justify-between`}>
         <div className='flex py-5 px-2 text-white flex-col'>
             <h1 className='font-IMB text-2xl'>{localStorage.getItem('name')}</h1>
             <p className='font-IMB text-sm text-orange-300'>{localStorage.getItem('role')}</p>

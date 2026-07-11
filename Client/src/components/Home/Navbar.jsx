@@ -62,7 +62,7 @@ const Navbar = () => {
           Offers
         </Link>
         {role === "admin" ? (
-          <Link className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
+          <Link to='/admin' className=" hover:border-b-[#e8691a] hover:border-b-5 rounded-3xl duration-300 px-4 hover:text-[#e8691a]">
             Dashboard
           </Link>
         ) : null}
@@ -89,7 +89,7 @@ const Navbar = () => {
         {profilePanel ? <Profile /> : null}
       </div>
       <div
-        className={`${navPanel ? "translate-x-none overflow-x-clip" : "translate-x-300"} absolute top-0 h-screen right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-[#e8691a] duration-300`}
+        className={`${navPanel ? "translate-x-none overflow-x-clip" : "translate-x-300"} absolute top-0 z-99999 h-screen right-0 w-full sm:w-5/10 md:w-1/2 flex flex-col font-IMB text-[5vh] gap-2 items-center justify-center text-white bg-[#e8691a] duration-300`}
       >
         <div
           onClick={() => {

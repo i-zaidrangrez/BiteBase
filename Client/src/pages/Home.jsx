@@ -7,7 +7,7 @@ import Category from '../components/Home/Category'
 const Home = () => {
     const auth = useSelector((state)=>state.auth)
   return (
-    <div className='h-full w-full'>
+    <div className='w-full'>
       <HeroSection/>
       <Category/>
     </div>

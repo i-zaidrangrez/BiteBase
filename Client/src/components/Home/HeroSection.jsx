@@ -9,7 +9,7 @@ import Category from "./Category";
 const HeroSection = () => {
   return (
     <div className="w-full">
-      <div className="mx-auto flex flex-col items-center gap-12 px-6 py-10 lg:flex-row lg:gap-16 lg:py-16">
+      <div className="mx-auto flex flex-col items-center gap-12 px-6 py-10 lg:flex-row lg:gap-4 lg:py-4">
         {/* Left Content */}
         <div className="w-full lg:w-1/2">
           <MainText />
