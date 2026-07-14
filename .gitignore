@@ -70,3 +70,5 @@ vite.config.js.timestamp-*
 # Uploads (optional)
 
 uploads/
+
+mail.js

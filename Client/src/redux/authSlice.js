@@ -38,6 +38,7 @@ const authSlice = createSlice({
     initialState : {
         loading : false,
         error : null,
+        user : null,
         name : null,
         email : null,
         role : null,
@@ -52,6 +53,8 @@ const authSlice = createSlice({
             state.name = action.payload.user.name
             state.email = action.payload.user.email
             state.role = action.payload.user.role
+            state.user = action.payload.user
+            localStorage.setItem('userId',action.payload.user.id)
             localStorage.setItem('name',state.name)
             localStorage.setItem('email',state.email)
             localStorage.setItem('role',state.role)

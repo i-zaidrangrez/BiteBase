@@ -3,8 +3,9 @@ import menuModel from "../models/menu.model.js";
 
 export async function addToCart(req, res) {
   try {
-    const {  menuItemId, quantity = 1 } = req.body;
-    const userId = req.user._id;
+    const { userId, menuItemId, quantity = 1 } = req.body;
+    // const userId = req.user._id;
+    // console.log(req.user._id)
 
     let cart = await cartModel.findOne({ userId });
     if (!cart) {
@@ -48,7 +49,7 @@ export async function addToCart(req, res) {
 
 export async function getCart(req, res) {
   try {
-    const userId = req.user._id;
+    const {userId} = req.body;
     if (!userId) {
       return res.status(400).json({
         message: "You have to login First!",
@@ -73,8 +74,7 @@ export async function getCart(req, res) {
 
 export async function removeItemFromCart(req, res) {
   try {
-    const { menuItemId } = req.body;
-    const userId = req.user._id;
+    const {userId, menuItemId } = req.body;
 
     if (!userId) {
       return res.status(400).json({
@@ -110,8 +110,7 @@ export async function removeItemFromCart(req, res) {
 
 export async function increaseQuantity(req, res) {
   try {
-    const { menuItemId } = req.body;
-    const userId = req.user._id;
+    const {userId, menuItemId } = req.body;
     if (!userId) {
       return res.status(400).json({
         message: "You have to login First!",
@@ -145,8 +144,7 @@ export async function increaseQuantity(req, res) {
 
 export async function decreaseQuantity(req, res) {
   try {
-    const { menuItemId } = req.body;
-    const userId = req.user._id;
+    const {userId, menuItemId } = req.body;
     if (!userId) {
       return res.status(400).json({
         message: "You have to login First!",
@@ -186,7 +184,7 @@ export async function decreaseQuantity(req, res) {
 
 export async function clearCart(req, res) {
   try {
-    const userId = req.user._id;
+    const userId = req.body;
     if (!userId) {
       return res.status(400).json({
         message: "You have to login First!",
