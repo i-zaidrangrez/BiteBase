@@ -2,8 +2,11 @@ import express from "express";
 import userModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import nodemailer from 'nodemailer'
 import { generateAccessToken, generateRefreshToken } from "../utils/tokens.js";
 import { matchedData } from "express-validator";
+import registerTemplate from "../service/tamplates/registerTemplate.js";
+import transporter from "../service/emailService.js";
 
 export async function registerController(req, res) {
   try {
@@ -35,6 +38,17 @@ export async function registerController(req, res) {
     await user.save();
     const accessToken = generateAccessToken({id : user._id , name: user.name , email : user.email , role : user.role})
     res.cookie("accessToken", accessToken);
+
+      const info = await transporter.sendMail({
+        from: 'zaidrangrez.me@gmail.com', // sender address
+        to: user.email, // list of recipients
+        subject: "Registeration", // subject line
+        text: registerTemplate(user.name , "Bitebase")
+      });
+    
+      console.log("Message sent: %s", info.messageId);
+      // Preview URL is only available when using an Ethereal test account
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
     return res.status(201).json({
       message: "User Registered Successfully",
