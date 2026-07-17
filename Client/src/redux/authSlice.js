@@ -31,6 +31,15 @@ export const register = createAsyncThunk('/auth/register',async(data , thunkAPI)
         return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
+export const findAccount = createAsyncThunk('/auth/findaccount',async(data , thunkAPI)=>{
+    try {
+        const res = await axios.post('http://localhost:3000/auth/v1/findaccount',data)
+        console.log(res)
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
+    }
+})
 
 
 const authSlice = createSlice({
@@ -95,6 +104,14 @@ const authSlice = createSlice({
             localStorage.removeItem('AccessToken')
 
         }).addCase(logout.rejected , (state , action) => {
+            state.loading = false
+            state.error = action.payload
+        })
+        builder.addCase(findAccount.pending, (state , action)=>{
+            state.loading = true
+        }).addCase(findAccount.fulfilled , (state , action) => {
+            state.loading = false
+        }).addCase(findAccount.rejected , (state , action) => {
             state.loading = false
             state.error = action.payload
         })

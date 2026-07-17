@@ -116,15 +116,16 @@ const Register = () => {
             </div>
 
 
+            
+            <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">
+              {auth.loading ? "Registering" : "Register"}
+            </button>
             <p className="text-xs text-gray-500">
               Already a Customer?{" "}
               <Link to="/login" className="text-[#e8691a]">
                 Log In
               </Link>
             </p>
-            <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">
-              {auth.loading ? "Registering" : "Register"}
-            </button>
           </form>
           {auth.error ? <p className="text-red-600 border bg-red-100 border-red-500 px-2 py-1">
             {auth.error ? auth.error : ""}

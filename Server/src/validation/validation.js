@@ -14,8 +14,7 @@ export const validateRegistration = [
     .toLowerCase()
     .withMessage("Please Enter Email in Lowercase")
     .isEmail()
-    .withMessage("email is invalid")
-    .normalizeEmail(),
+    .withMessage("email is invalid"),
   body("password")
     .notEmpty()
     .withMessage("Password is required")

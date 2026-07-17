@@ -84,7 +84,20 @@ const Login = () => {
                 placeholder="Enter Password"
               />
             </div>
-            <p className="text-xs text-gray-500">
+            <div className="w-9/10 flex justify-end">
+            
+              <Link
+                to="/findaccount"
+                className="text-xs text-[#e8691a] hover:text-orange-400"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+           
+            <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">
+              {auth.loading ? "Logging In..." : "Log In"}
+            </button>
+             <p className="text-xs text-gray-500">
               New Customer?{" "}
               <Link
                 to="/register"
@@ -93,13 +106,12 @@ const Login = () => {
                 Sign Up
               </Link>
             </p>
-            <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">
-              {auth.loading ? "Logging In..." : "Log In"}
-            </button>
           </form>
-          {auth.error ? <p className="text-red-600 border bg-red-100 border-red-500 px-2 py-1">
-            {auth.error ? auth.error : ""}
-          </p> : null}
+          {auth.error ? (
+            <p className="text-red-600 border bg-red-100 border-red-500 px-2 py-1">
+              {auth.error ? auth.error : ""}
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

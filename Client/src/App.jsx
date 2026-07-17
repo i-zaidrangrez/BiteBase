@@ -12,6 +12,7 @@ import CustomerLayout from "./Layout/CustomerLayout.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import DashboardMenu from "./components/dashboard/DashboardMenu.jsx";
 import AdminLayout from "./Layout/AdminLayout.jsx";
+import FindAccount from "./pages/FindAccount.jsx";
 
 const App = () => {
   return (
@@ -34,6 +35,14 @@ const App = () => {
           element={
             <OpenRoutes>
               <Login />
+            </OpenRoutes>
+          }
+        />
+        <Route
+          path="/findAccount"
+          element={
+            <OpenRoutes>
+              <FindAccount />
             </OpenRoutes>
           }
         />

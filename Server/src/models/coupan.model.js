@@ -7,7 +7,7 @@ const coupanSchema = new mongoose.Schema({
     },
     discountType : {
         type : String,
-        enum : ['percentage','fixedAmount']
+        enum : ['percentage','fixed']
     },
     maxDiscount : {
         type : Number
@@ -23,7 +23,8 @@ const coupanSchema = new mongoose.Schema({
         default : true
     },
     isFirstOrder : {
-        type : Boolean
+        type : Boolean,
+        default : null
     },
     usageLimit : {
         type : Number
@@ -35,7 +36,8 @@ const coupanSchema = new mongoose.Schema({
         type : Number
     },
     discountValue : {
-        type : Number
+        type : Number,
+        default : 0
     },
     description : {
         type : String

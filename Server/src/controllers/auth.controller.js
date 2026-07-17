@@ -7,6 +7,7 @@ import { generateAccessToken, generateRefreshToken } from "../utils/tokens.js";
 import { matchedData } from "express-validator";
 import registerTemplate from "../service/tamplates/registerTemplate.js";
 import transporter from "../service/emailService.js";
+import sendingResetLink from "../service/tamplates/sendingResetLink.js";
 
 export async function registerController(req, res) {
   try {
@@ -167,4 +168,36 @@ export async function deleteUser(req,res) {
       message : error
     })
   }
+}
+
+export async function searchAccount(req,res) {
+ try {
+   const {email} = req.body;
+   const user = await userModel.findOne({email})
+   if(!user){
+     return res.status(404).json({
+       message : "Account not found"
+     })
+   }
+   const resetLink = `http://localhost:5173/findAccount`
+    const info = await transporter.sendMail({
+         from: 'zaidrangrez.me@gmail.com', // sender address
+         to: user.email, // list of recipients
+         subject: "Reset Your Password", // subject line
+         text: sendingResetLink(user.name , "Bitebase", resetLink)
+       });
+     
+       console.log("Message sent: %s", info.messageId);
+       // Preview URL is only available when using an Ethereal test account
+       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+ 
+       return res.status(400).json({
+         message : "Email sent"
+       })
+ } catch (error) {
+  return res.status(500).json({
+    message : error.message
+  })
+ }
+  
 }
