@@ -31,7 +31,4 @@ Happy eating! 🍕
 `;
 };
 
-
-console.log(registerTemplate('raghav', 'Bitebase')
-) 
 export default registerTemplate;

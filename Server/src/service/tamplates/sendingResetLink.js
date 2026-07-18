@@ -1,31 +1,55 @@
-const sendingResetLink = (
-  customerName,
-  restaurantName,
-  resetLink
-) => {
-  return `Hi ${customerName},
+const sendingResetLink = (customerName, restaurantName, resetLink) => {
+  return `
+  <div style="max-width:600px;margin:auto;padding:30px;font-family:Arial,sans-serif;background:#ffffff;border:1px solid #e5e5e5;border-radius:10px;">
+    
+    <h2 style="color:#e8691a;">Reset Your Password</h2>
 
-We received a request to reset the password for your ${restaurantName} account.
+    <p>Hi <strong>${customerName}</strong>,</p>
 
-🔐 Reset your password using the link below:
+    <p>
+      We received a request to reset the password for your
+      <strong>${restaurantName}</strong> account.
+    </p>
 
-${resetLink}
+    <div style="text-align:center;margin:35px 0;">
+      <a
+        href="${resetLink}"
+        style="
+          background:#e8691a;
+          color:#ffffff;
+          text-decoration:none;
+          padding:14px 28px;
+          border-radius:8px;
+          display:inline-block;
+          font-weight:bold;
+        "
+      >
+        Reset Password
+      </a>
+    </div>
 
-━━━━━━━━━━━━━━━━━━━━━━
+    <p><strong>Security Notice</strong></p>
 
-⚠️ Security Notice
+    <ul>
+      <li>This link expires in 15 minutes.</li>
+      <li>It can only be used once.</li>
+      <li>If you didn't request this, you can safely ignore this email.</li>
+    </ul>
 
-• It can only be used once.
-• If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.
+    <p>
+      If the button doesn't work, copy and paste the following link into your browser:
+    </p>
 
-━━━━━━━━━━━━━━━━━━━━━━
+    <p>
+      <a href="${resetLink}">${resetLink}</a>
+    </p>
 
-If the link doesn't work, copy and paste it into your browser.
+    <hr />
 
-Stay safe,
-— Team ${restaurantName}
-`;
+    <p>Stay safe,<br /><strong>Team ${restaurantName}</strong></p>
+
+  </div>
+  `;
 };
-
 
 export default sendingResetLink;

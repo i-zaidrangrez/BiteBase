@@ -11,15 +11,15 @@ const FindAccount = () => {
   const [email, setEmail] = useState("");
   const handleSearch = async (e) => {
     try {
-        e.preventDefault();
-        const res = await dispatch(
-          findAccount({
-            email,
-          }),
-        ).unwrap();
-        console.log(res)
+      e.preventDefault();
+      const res = await dispatch(
+        findAccount({
+          email,
+        }),
+      ).unwrap();
+      console.log(res);
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
   };
   return (
@@ -73,6 +73,17 @@ const FindAccount = () => {
           >
             {auth.loading ? "Searching..." : "Search Account"}
           </button>
+          <p
+            className={`${auth.success === "Email sent" ? "border text-green-400 border-green-400" : null} ${auth.error === "Account not found" ? "border text-red-400 border-red-400" : null} text-sm font-medium rounded-lg px-4 py-3 mt-3
+    flex items-center justify-center text-center
+    transition-all duration-300`}
+          >
+            {auth.error
+              ? auth.error
+              : null || auth.success
+                ? auth.success
+                : null}
+          </p>
         </form>
 
         {/* Back */}

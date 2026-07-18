@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import DashboardMenu from "./components/dashboard/DashboardMenu.jsx";
 import AdminLayout from "./Layout/AdminLayout.jsx";
 import FindAccount from "./pages/FindAccount.jsx";
+import UpdatePassword from "./pages/UpdatePassword.jsx";
 
 const App = () => {
   return (
@@ -43,6 +44,15 @@ const App = () => {
           element={
             <OpenRoutes>
               <FindAccount />
+            </OpenRoutes>
+          }
+        />
+
+        <Route
+          path="/reset-password/:token"
+          element={
+            <OpenRoutes>
+              <UpdatePassword />
             </OpenRoutes>
           }
         />

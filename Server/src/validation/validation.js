@@ -28,6 +28,13 @@ export const validateRegistration = [
     .isLength({min : 10 , max :10})
     .withMessage("Phone Number should Contain 10 numbers"),
 ];
+export const validPasswordUpdate = [
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required")
+    .isLength({ min: 6 , max: 12 })
+    .withMessage("password length must be 6 to 12"),
+]
 export const validateUpdate = [
   body("name")
   .optional()

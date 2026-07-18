@@ -179,19 +179,24 @@ export async function searchAccount(req,res) {
        message : "Account not found"
      })
    }
-   const resetLink = `http://localhost:5173/findAccount`
+
+   const resetPassToken = jwt.sign({userId : user._id} , process.env.JWT_RESET_PASSWORD_SECRET ,{ expiresIn: "15m", })
+  
+   const resetLink = `http://localhost:5173/reset-password/${resetPassToken}`
+
+
     const info = await transporter.sendMail({
          from: 'zaidrangrez.me@gmail.com', // sender address
          to: user.email, // list of recipients
          subject: "Reset Your Password", // subject line
-         text: sendingResetLink(user.name , "Bitebase", resetLink)
+         html: sendingResetLink(user.name , "Bitebase", resetLink)
        });
      
        console.log("Message sent: %s", info.messageId);
        // Preview URL is only available when using an Ethereal test account
        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
  
-       return res.status(400).json({
+       return res.status(200).json({
          message : "Email sent"
        })
  } catch (error) {
@@ -200,4 +205,31 @@ export async function searchAccount(req,res) {
   })
  }
   
+}
+
+export async function resetPassword(req,res) {
+  try {
+    const {token, password , confirmedPass } = req.body;
+    if(password !== confirmedPass){
+      return res.status(400).json({
+        message : "Password Doesn't Match"
+      })
+    } 
+    const decoded = jwt.verify(token , process.env.JWT_RESET_PASSWORD_SECRET)
+    console.log(decoded.userId)
+    const userr = decoded.userId
+    const user = await userModel.findById(decoded.userId)
+    const passwordHash = await bcrypt.hash(password, 10);
+    user.passwordHash = passwordHash
+    await user.save()
+
+    return res.status(203).json({
+      message : "Password Updated",
+      user
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message : error.message
+    })
+  }
 }

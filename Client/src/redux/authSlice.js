@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
+import { TrendingUpDown } from 'lucide-react'
 
 export const login = createAsyncThunk('/auth/login',async(data , thunkAPI)=>{
     try {
@@ -34,6 +35,14 @@ export const register = createAsyncThunk('/auth/register',async(data , thunkAPI)
 export const findAccount = createAsyncThunk('/auth/findaccount',async(data , thunkAPI)=>{
     try {
         const res = await axios.post('http://localhost:3000/auth/v1/findaccount',data)
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
+    }
+})
+export const resetPassword = createAsyncThunk('/auth/reset-password',async(data , thunkAPI)=>{
+    try {
+        const res = await axios.patch('http://localhost:3000/auth/v1/reset-password',data)
         console.log(res)
         return res.data
     } catch (error) {
@@ -45,6 +54,7 @@ export const findAccount = createAsyncThunk('/auth/findaccount',async(data , thu
 const authSlice = createSlice({
     name  : "auth",
     initialState : {
+        success : null,
         loading : false,
         error : null,
         user : null,
@@ -110,10 +120,26 @@ const authSlice = createSlice({
         builder.addCase(findAccount.pending, (state , action)=>{
             state.loading = true
         }).addCase(findAccount.fulfilled , (state , action) => {
+            state.error = null
+            state.success = action.payload.message
             state.loading = false
         }).addCase(findAccount.rejected , (state , action) => {
+            state.success = false
             state.loading = false
             state.error = action.payload
+        })
+        builder.addCase(resetPassword.pending, (state , action)=>{
+            state.loading = true
+        }).addCase(resetPassword.fulfilled , (state , action) => {
+            state.error = null
+            console.log(action)
+            state.success = action.payload.message
+            state.loading = false
+        }).addCase(resetPassword.rejected , (state , action) => {
+            state.success = false
+            state.loading = false
+            state.error = action.payload
+            console.log(state.error)
         })
     }
 })

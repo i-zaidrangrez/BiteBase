@@ -1,7 +1,7 @@
 import express from 'express'
-import { deActivateUser, deleteUser, loginController, registerController, searchAccount, updateUser} from '../controllers/auth.controller.js'
+import { deActivateUser, deleteUser, loginController, registerController, resetPassword, searchAccount, updateUser} from '../controllers/auth.controller.js'
 import { handleValidation } from '../middlewares/validationMiddleware.js'
-import { validateRegistration, validateUpdate } from '../validation/validation.js'
+import { validateRegistration, validateUpdate, validPasswordUpdate } from '../validation/validation.js'
 import {authMiddleware} from '../middlewares/authMiddleware.js'
 import checkRole from '../middlewares/checkRole.js'
 
@@ -10,6 +10,7 @@ const router = express.Router()
 router.post('/register',validateRegistration ,handleValidation, registerController)
 router.post('/login',loginController)
 router.post('/findaccount',searchAccount)
+router.patch('/reset-password',validPasswordUpdate ,handleValidation,resetPassword)
 router.patch('/update',validateUpdate,handleValidation,authMiddleware,checkRole(['customer','admin']),updateUser)
 router.patch('/deactivate',authMiddleware,checkRole(['customer','admin']),deActivateUser)
 router.delete('/delete',authMiddleware,checkRole(['customer','admin']),deleteUser)
