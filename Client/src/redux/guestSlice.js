@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const session = createAsyncThunk('/session',async (data , thunkAPI)=>{
     try {
-        const res = await axios.post('http://localhost:3000/session/v1/session',data)
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/v1/session`,data)
         return res.data
     } catch (error) {
         console.log(error)

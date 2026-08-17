@@ -4,12 +4,13 @@ import { TrendingUpDown } from 'lucide-react'
 
 export const login = createAsyncThunk('/auth/login',async(data , thunkAPI)=>{
     try {
-        const res = await axios.post('http://localhost:3000/auth/v1/login',data)
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/v1/login`,data)
         return res.data
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
+
 export const logout = createAsyncThunk('/auth/logout',async(_ , thunkAPI)=>{
     try {
         // const res = await axios.post('http://localhost:3000/auth/v1/logout')
@@ -25,24 +26,26 @@ export const logout = createAsyncThunk('/auth/logout',async(_ , thunkAPI)=>{
 
 export const register = createAsyncThunk('/auth/register',async(data , thunkAPI)=>{
     try {
-        const res = await axios.post('http://localhost:3000/auth/v1/register',data)
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/v1/register`,data)
         return res.data
         console.log(res)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
+
 export const findAccount = createAsyncThunk('/auth/findaccount',async(data , thunkAPI)=>{
     try {
-        const res = await axios.post('http://localhost:3000/auth/v1/findaccount',data)
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/v1/findaccount`,data)
         return res.data
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
+
 export const resetPassword = createAsyncThunk('/auth/reset-password',async(data , thunkAPI)=>{
     try {
-        const res = await axios.patch('http://localhost:3000/auth/v1/reset-password',data)
+        const res = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/auth/v1/reset-password`,data)
         console.log(res)
         return res.data
     } catch (error) {
