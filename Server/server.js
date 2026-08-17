@@ -17,7 +17,7 @@ const app = express()
 // middlewares 
 app.use(express.json())
 app.use(cors({
-    origin  : ['http://localhost:5173', 'http://10.110.198.42:5173'],
+    origin  : ['http://localhost:5173', 'http://10.110.198.42:5173','https://resturant-project-ytnc.vercel.app/'],
     credentials : true
 }))
 app.use(cookieParser())
@@ -35,8 +35,9 @@ app.get('/',(req,res)=>{
     res.send('HomePage is Here')
 })
 
+const PORT = process.env.PORT || 3000
 
 // Server 
-app.listen(3000,()=>{
-    console.log("server is running")
+app.listen(PORT,()=>{
+    console.log(`server is running ${PORT}`)
 })
