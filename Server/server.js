@@ -37,7 +37,15 @@ app.get('/',(req,res)=>{
 
 const PORT = process.env.PORT || 3000
 
-// Server 
-app.listen(PORT,()=>{
-    console.log(`server is running ${PORT}`)
-})
+
+
+// Vercel
+export default app
+
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000
+
+    app.listen(PORT, () => {
+        console.log(`server is running on port ${PORT}`)
+    })
+}
