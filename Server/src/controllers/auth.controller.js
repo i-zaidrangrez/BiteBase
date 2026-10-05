@@ -70,6 +70,7 @@ export async function registerController(req, res) {
 
 export async function loginController(req, res) {
   try {
+    console.log(req)
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({
@@ -110,7 +111,7 @@ export async function loginController(req, res) {
       },
     });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 }
 

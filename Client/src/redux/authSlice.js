@@ -5,8 +5,10 @@ import { TrendingUpDown } from 'lucide-react'
 export const login = createAsyncThunk('/auth/login',async(data , thunkAPI)=>{
     try {
         const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/v1/login`,data)
+        console.log(res)
         return res.data
     } catch (error) {
+        console.log(error)
         return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
