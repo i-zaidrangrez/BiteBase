@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
-import 'dotenv/config'
 import { TrendingUpDown } from 'lucide-react'
 
 console.log(import.meta.env.VITE_BACKEND_URL)
